@@ -1,12 +1,25 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  </head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap demo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.1/sp-2.1.0/datatables.min.css"/>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
     <body>
+        @if (session('error'))
+            <script>
+                Swal.fire({
+                    position: 'top',
+                    icon: 'success',
+                    title: '{{ session("success") }}',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            </script>
+        @endif
     
         <div class="container py-3">
             <header>
@@ -16,8 +29,8 @@
                     </a>
                 
                     <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Dashboard</a>
-                        <a class="me-3 py-2 text-dark text-decoration-none" href="#">User</a>
+                        <a class="me-3 py-2 text-dark text-decoration-none" href="{{ url('/') }}">Dashboard</a>
+                        <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('user.index') }}">User</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="#">Inventaris</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="#">Jabatan</a>
                         <a class="py-2 text-dark text-decoration-none" href="#">Task</a>
@@ -26,9 +39,15 @@
             </header>
         
             <main>
-                
+                @yield('content')
             </main>        
         </div>
-
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.1/sp-2.1.0/datatables.min.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#myTable').DataTable();
+            } );
+        </script>
     </body>
 </html>
