@@ -9,7 +9,18 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
-        @if (session('error'))
+        
+        @if (session('success'))
+            <script>
+                Swal.fire({
+                    position: 'top',
+                    icon: 'success',
+                    title: '{{ session("success") }}',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            </script>
+        @elseif (session('error'))
             <script>
                 Swal.fire({
                     position: 'top',
@@ -31,7 +42,7 @@
                     <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ url('/') }}">Dashboard</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('user.index') }}">User</a>
-                        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Inventaris</a>
+                        <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('inventaris.index') }}">Inventaris</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="#">Jabatan</a>
                         <a class="py-2 text-dark text-decoration-none" href="#">Task</a>
                     </nav>
@@ -42,12 +53,24 @@
                 @yield('content')
             </main>        
         </div>
+        
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+                
+        {{-- Konfirmasi hapus data --}}
+        <script>
+            $("#deleteBtn").click(function(){
+                return confirm("Anda yakin mau menghapus data ini?");
+            });
+        </script>
+        {{-- Konfirmasi hapus data --}}
+
+        {{-- Data table --}}
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.1/sp-2.1.0/datatables.min.js"></script>
         <script>
             $(document).ready( function () {
                 $('#myTable').DataTable();
             } );
         </script>
+        {{-- Data table --}}
     </body>
 </html>

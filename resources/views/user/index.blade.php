@@ -2,20 +2,7 @@
 @section("content")
 <a href="{{ route("user.create") }}" class="btn btn-md btn-primary mb-3">Tambah User</a>
 
-<table class="table" id="myTable">
-    @if (session('success'))
-    <script>
-        Swal.fire({
-            position: 'top',
-            icon: 'success',
-            title: '{{ session("success") }}',
-            showConfirmButton: false,
-            timer: 1500
-        })
-    </script>
-    @endif
-
-    
+<table class="table" id="myTable">    
     <thead>
         <tr>
             <th>Nama</th>
@@ -42,11 +29,5 @@
         @endforeach
     </tbody>
 </table>
-
-<script>
-    $("#deleteBtn").click(function(){
-        confirm("Anda yakin mau menghapus data ini?");
-    });
-</script>
 
 @endsection

@@ -44,7 +44,7 @@ class UserController extends Controller
         ],
         [
             'user_nama.required'            => 'Nama tidak boleh kosong',
-            'user_username.required'        => 'Username dinas tidak boleh kosong',
+            'user_username.required'        => 'Username tidak boleh kosong',
             'user_jabatan_id.required'      => 'Jabatan tidak boleh kosong',
             'password.required'             => 'Password tidak boleh kosong',
         ]);
@@ -59,17 +59,6 @@ class UserController extends Controller
 
         return redirect()->route("user.index")->with('success', 'Data user telah disimpan.');
 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -101,7 +90,7 @@ class UserController extends Controller
         ],
         [
             'user_nama.required'            => 'Nama tidak boleh kosong',
-            'user_username.required'        => 'Username dinas tidak boleh kosong',
+            'user_username.required'        => 'Username tidak boleh kosong',
             'user_jabatan_id.required'      => 'Jabatan tidak boleh kosong',
             'password.required'             => 'Password tidak boleh kosong',
         ]);
