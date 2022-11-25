@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('task', function (Blueprint $table) {
-            $table->increments('task_id', 8);
-            $table->string('task_nama', 100);
+            $table->increments('task_id')->length(8);
+            $table->string('task_nama')->length(100);
             $table->text('task_deskripsi');
-            $table->string('task_status',1);
+            $table->integer('task_status')->length(1);
             $table->timestamps();
         });
     }

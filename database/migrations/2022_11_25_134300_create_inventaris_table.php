@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('inventaris', function (Blueprint $table) {
-            $table->increments('inventaris_id', 8);
-            $table->string('inventaris_nama_barang', 100);
-            $table->foreign('inventaris_user_id')->references('user_id')->on('users');
+            $table->increments('inventaris_id')->length(8);
+            $table->string('inventaris_nama_barang')->length(100);
+            $table->integer('inventaris_user_id')->length(8);
             $table->timestamps();
         });
     }

@@ -14,10 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('list_task', function (Blueprint $table) {
-            $table->increments('list_id', 8);
-            $table->string('list_user_id', 100);
-            $table->foreign('list_user_id')->references('user_id')->on('users');
-            $table->foreign('list_task_id')->references('task_id')->on('task');
+            $table->increments('list_id')->length(8);
+            $table->integer('list_user_id')->length(8);
+            $table->integer('list_task_id')->length(8);
             $table->string('task_status',1);
             $table->timestamps();
         });
