@@ -9,7 +9,6 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
-        
         @if (session('success'))
             <script>
                 Swal.fire({
@@ -43,7 +42,7 @@
                         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ url('/') }}">Dashboard</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('user.index') }}">User</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('inventaris.index') }}">Inventaris</a>
-                        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Jabatan</a>
+                        <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('jabatan.index') }}">Jabatan</a>
                         <a class="py-2 text-dark text-decoration-none" href="#">Task</a>
                     </nav>
                 </div>

@@ -1,6 +1,6 @@
 @extends('../index')
 @section("content")
-<a href="{{ route("inventaris.create") }}" class="btn btn-md btn-primary mb-3">Tambah Inventaris</a>
+<a href="{{ route("jabatan.create") }}" class="btn btn-md btn-primary mb-3">Tambah Jabatan</a>
 
 <table class="table" id="myTable">    
     <thead>
@@ -12,14 +12,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($inventaris as $key=>$inven)
+        @foreach ($jabatan as $key=>$jabat)
             <tr>
                 <td>{{ $key+1 }}</td>
-                <td>{{ $inven->inventaris_nama_barang }}</td>
-                <td>{{ $inven->inventaris_user_id }}</td>
+                <td>{{ $jabat->jabatan_nama }}</td>
+                <td>{{ $jabat->jabatan_deskripsi }}</td>
                 <td>
-                    <form action="{{ route('inventaris.destroy', $inven->inventaris_id ) }}" method="POST">
-                        <a href="{{ route("inventaris.edit", $inven->inventaris_id) }}" class="btn btn-md btn-warning">Edit</a>
+                    <form action="{{ route('jabatan.destroy', $jabat->jabatan_id ) }}" method="POST">
+                        <a href="{{ route("jabatan.edit", $jabat->jabatan_id) }}" class="btn btn-md btn-warning">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button id="deleteBtn" class="btn btn-md btn-danger">Hapus</button>

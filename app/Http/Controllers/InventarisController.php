@@ -91,7 +91,7 @@ class InventarisController extends Controller
         $inventaris->inventaris_user_id       = $request->inventaris_user_id;
         $inventaris->save();
 
-        return redirect()->route("inventaris.index")->with('success', 'Data inventaris telah disimpan.');
+        return redirect()->route("inventaris.index")->with('success', 'Data inventaris telah diupdate.');
     }
 
     /**
