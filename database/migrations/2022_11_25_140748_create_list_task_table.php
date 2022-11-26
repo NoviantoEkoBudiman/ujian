@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('list_id')->length(8);
             $table->integer('list_user_id')->length(8);
             $table->integer('list_task_id')->length(8);
-            $table->string('task_status',1);
+            $table->integer('list_task_status')->default(0)->length(1);
             $table->timestamps();
         });
     }

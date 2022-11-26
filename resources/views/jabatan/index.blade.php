@@ -7,7 +7,7 @@
         <tr>
             <th>#</th>
             <th>Nama</th>
-            <th>Pemakai</th>
+            <th>Deskripsi</th>
             <th>Aksi</th>
         </tr>
     </thead>

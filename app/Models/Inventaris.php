@@ -14,6 +14,11 @@ class Inventaris extends Model
     protected $fillable = [
         'inventaris_id',
         'inventaris_nama_barang',
-        'inventaris_uder_id'
+        'inventaris_user_id'
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'user_id', 'inventaris_user_id');
+    }
 }

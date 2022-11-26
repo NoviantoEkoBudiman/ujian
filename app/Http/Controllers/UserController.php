@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Jabatan;
+use App\Models\Task;
+use App\Models\ListTask;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get();
+        $users = User::with('jabatan')->get();
         return view('user.index', compact('users'));
     }
 
@@ -25,7 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $jabatan = Jabatan::get();
+        return view('user.create', compact("jabatan"));
     }
 
     /**
@@ -38,27 +43,41 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'user_nama'         => 'required',
-            'user_username'     => 'required',
+            'username'          => 'required',
             'user_jabatan_id'   => 'required',
             'password'          => 'required',
         ],
         [
             'user_nama.required'            => 'Nama tidak boleh kosong',
-            'user_username.required'        => 'Username tidak boleh kosong',
+            'username.required'             => 'Username tidak boleh kosong',
             'user_jabatan_id.required'      => 'Jabatan tidak boleh kosong',
             'password.required'             => 'Password tidak boleh kosong',
         ]);
         
         $user = new User;
         $user->user_nama        = $request->user_nama;
-        $user->user_username    = $request->user_username;
+        $user->username         = $request->username;
         $user->user_jabatan_id  = $request->user_jabatan_id;
-        $user->password         = $request->password;
+        $user->password         = Hash::make($request->password);
 
         $user->save();
 
         return redirect()->route("user.index")->with('success', 'Data user telah disimpan.');
 
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $data['task']       = Task::get();
+        $data['list_task']  = ListTask::with('task','user')->where("list_user_id", $id)->get();
+        $data['user']       = User::find($id);
+        return view('user.add_task', $data);
     }
 
     /**
@@ -84,22 +103,22 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'user_nama'         => 'required',
-            'user_username'     => 'required',
+            'username'          => 'required',
             'user_jabatan_id'   => 'required',
             'password'          => 'required',
         ],
         [
             'user_nama.required'            => 'Nama tidak boleh kosong',
-            'user_username.required'        => 'Username tidak boleh kosong',
+            'username.required'             => 'Username tidak boleh kosong',
             'user_jabatan_id.required'      => 'Jabatan tidak boleh kosong',
             'password.required'             => 'Password tidak boleh kosong',
         ]);
 
         $user                   = User::find($id);
         $user->user_nama        = $request->user_nama;
-        $user->user_username    = $request->user_username;
+        $user->username         = $request->username;
         $user->user_jabatan_id  = $request->user_jabatan_id;
-        $user->password         = $request->password;
+        $user->password         = Hash::make($request->password);
         $user->save();
         
         return redirect()->route("user.index")->with('success', 'Data user telah diupdate.');

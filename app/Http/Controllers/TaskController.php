@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\ListTask;
 
 class TaskController extends Controller
 {
@@ -102,5 +103,33 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
         return redirect()->route("task.index")->with('success', 'Data task telah dihapus.');
+    }
+
+    public function add_task(Request $request)
+    {
+        $validated = $request->validate([
+            'list_user_id'  => 'required',
+            'list_task_id'  => 'required',
+        ],
+        [
+            'list_user_id.required' => 'Nama tidak boleh kosong',
+            'list_task_id.required' => 'Username tidak boleh kosong',
+        ]);
+
+        $list               = new ListTask;
+        $list->list_user_id = $request->list_user_id;
+        $list->list_task_id = $request->list_task_id;
+        $list->save();
+        
+        return redirect()->route("user.index")->with('success', 'Data user telah diupdate.');
+    }
+
+    public function updateTask($id, Request $request)
+    {
+        $list                   = ListTask::find($id);
+        $list->list_task_status = ($list->list_task_status == 0) ? 1 : 0;
+        $list->save();
+        
+        return redirect()->route("user.show", $request->list_user_id)->with('success', 'Data task telah diupdate.');
     }
 }

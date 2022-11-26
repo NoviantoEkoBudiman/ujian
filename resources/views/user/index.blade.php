@@ -15,10 +15,11 @@
         @foreach ($users as $user)
             <tr>
                 <td>{{ $user->user_nama }}</td>
-                <td>{{ $user->user_username }}</td>
-                <td>{{ $user->user_jabatan_id }}</td>
+                <td>{{ $user->username }}</td>
+                <td>{{ $user->jabatan->jabatan_nama }}</td>
                 <td>
                     <form action="{{ route('user.destroy', $user->user_id ) }}" method="POST">
+                        <a href="{{ route("user.show", $user->user_id) }}" class="btn btn-md btn-info">Task</a>
                         <a href="{{ route("user.edit", $user->user_id) }}" class="btn btn-md btn-warning">Edit</a>
                         @csrf
                         @method('DELETE')

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Jabatan;
 
 class User extends Authenticatable
 {
@@ -22,7 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'user_id',
         'user_nama',
-        'user_username',
+        'username',
         'user_jabatan_id',
         'password'
     ];
@@ -45,4 +46,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function jabatan()
+    {
+        return $this->hasOne(Jabatan::class, 'jabatan_id', 'user_jabatan_id');
+    }
+
+    public function inventaris()
+    {
+        return $this->hasMany(Inventaris::class, 'inventaris_id');
+    }
 }

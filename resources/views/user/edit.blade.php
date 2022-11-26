@@ -15,8 +15,8 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Username</label>
-        <input type="text" name="user_username" class="form-control @error('user_username') is-invalid @enderror" value="{{ @$user->user_username }}">
-        @error('user_username')
+        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ @$user->username }}">
+        @error('username')
             <div class="alert alert-danger" role="alert">
                 {{ $message }}
             </div>

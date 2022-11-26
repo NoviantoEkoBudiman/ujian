@@ -16,4 +16,9 @@ class Jabatan extends Model
         'jabatan_nama',
         'jabatan_user_deskripsi'
     ];
+
+    public function user()
+    {
+        return $this->hasOne(Jabatan::class, 'user_jabatan_id', 'jabatan_id');
+    }
 }

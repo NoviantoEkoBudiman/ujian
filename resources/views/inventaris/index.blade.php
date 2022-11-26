@@ -16,7 +16,7 @@
             <tr>
                 <td>{{ $key+1 }}</td>
                 <td>{{ $inven->inventaris_nama_barang }}</td>
-                <td>{{ $inven->inventaris_user_id }}</td>
+                <td>{{ $inven->user->user_nama }}</td>
                 <td>
                     <form action="{{ route('inventaris.destroy', $inven->inventaris_id ) }}" method="POST">
                         <a href="{{ route("inventaris.edit", $inven->inventaris_id) }}" class="btn btn-md btn-warning">Edit</a>

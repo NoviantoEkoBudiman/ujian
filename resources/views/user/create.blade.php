@@ -14,8 +14,8 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Username</label>
-        <input type="text" name="user_username" class="form-control @error('user_username') is-invalid @enderror">
-        @error('user_username')
+        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror">
+        @error('username')
             <div class="alert alert-danger" role="alert">
                 {{ $message }}
             </div>
@@ -25,10 +25,9 @@
         <label class="form-label">Jabatan</label>
         <select name="user_jabatan_id" class="form-control @error('user_jabatan') is-invalid @enderror">
             <option></option>
-            <option value="1">Direktur</option>
-            <option value="2">Team Leader</option>
-            <option value="3">Pegawai</option>
-            <option value="4">Admin</option>
+            @foreach ($jabatan as $jbt)
+                <option value="{{ $jbt->jabatan_id }}">{{ $jbt->jabatan_nama }}</option>          
+            @endforeach
         </select>
         @error('user_jabatan_id')
             <div class="alert alert-danger" role="alert">

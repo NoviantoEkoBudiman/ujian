@@ -15,7 +15,7 @@ class InventarisController extends Controller
      */
     public function index()
     {
-        $inventaris = Inventaris::get(); 
+        $inventaris = Inventaris::with("user")->get();
         return view("inventaris.index", compact("inventaris"));
     }
 

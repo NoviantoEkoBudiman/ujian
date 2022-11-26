@@ -43,7 +43,14 @@
                         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('user.index') }}">User</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('inventaris.index') }}">Inventaris</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('jabatan.index') }}">Jabatan</a>
-                        <a class="py-2 text-dark text-decoration-none" href="{{ route('task.index') }}">Task</a>
+                        <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('task.index') }}">Task</a>
+                        @if (Route::has('login'))
+                                @auth
+                                    <a href="{{ url('/logout') }}" class="me-3 py-2 text-dark text-decoration-none">Logout</a>
+                                @else
+                                    <a href="{{ route('login') }}" class="me-3 py-2 text-dark text-decoration-none">Login</a>
+                                @endauth
+                        @endif
                     </nav>
                 </div>
             </header>

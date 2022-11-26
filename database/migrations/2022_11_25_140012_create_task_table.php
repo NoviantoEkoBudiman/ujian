@@ -17,7 +17,6 @@ return new class extends Migration
             $table->increments('task_id')->length(8);
             $table->string('task_nama')->length(100);
             $table->text('task_deskripsi');
-            $table->integer('task_status')->default(0)->length(1);
             $table->timestamps();
         });
     }
