@@ -43,7 +43,7 @@
                         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('user.index') }}">User</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('inventaris.index') }}">Inventaris</a>
                         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('jabatan.index') }}">Jabatan</a>
-                        <a class="py-2 text-dark text-decoration-none" href="#">Task</a>
+                        <a class="py-2 text-dark text-decoration-none" href="{{ route('task.index') }}">Task</a>
                     </nav>
                 </div>
             </header>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::get('/', function () {
 Route::resource('user',UserController::class);
 Route::resource('inventaris',InventarisController::class);
 Route::resource('jabatan',JabatanController::class);
+Route::resource('task',TaskController::class);
